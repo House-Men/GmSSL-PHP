@@ -38,6 +38,16 @@
 #include <gmssl/pbkdf2.h>
 #include <gmssl/error.h>
 
+/* For compatibility with older PHP versions */
+#ifndef ZEND_PARSE_PARAMETERS_NONE
+#define ZEND_PARSE_PARAMETERS_NONE() \
+    ZEND_PARSE_PARAMETERS_START(0, 0) \
+    ZEND_PARSE_PARAMETERS_END()
+#endif
+
+#ifndef zend_string_efree
+#define zend_string_efree(str) efree(str)
+#endif
 
 PHP_MINIT_FUNCTION(gmssl)
 {
